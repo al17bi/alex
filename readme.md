@@ -1,8 +1,9 @@
 # Windows 10 -> Vagrant-PhpShtorm-Laravel
 - XDebug + GitHub + PUTTY + Git-bash
+- Привет Мир !
 
 ## Настройки Vagrant Homestead
-file Homestead.jaml -> обычно  на **Windows 10** -> c:\Users\\**_your-User_**\\.homestead\Homestead.jaml:
+file Homestead.jaml -> обычно для **Windows 10** -> c:\Users\\**_your-User_**\\.homestead\Homestead.jaml:
 ```
  ip: "192.168.10.10" 
  memory: 2048
