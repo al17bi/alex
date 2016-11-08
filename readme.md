@@ -30,6 +30,11 @@ file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homeste
 
 Считаем что PhpShtorm установлен и создаем новый project, при этом настройки vagrant остались прежние
 
+Что это значит?
+
+Либо создаем новые правила настроек PhpShtorm, либо используем ужу настроеные. Под этим подразумевается следующее:
+ 
+ 
 при создании нового project предполагается использования composer в Shtorm->New project->Composer project->Location = новый каталог для проекта ( под домонтированым 'c:/Code/new')
 example: **С:/Code/alex**
 На установленном PhpShtorm для нового project: -> входим в настройки  
