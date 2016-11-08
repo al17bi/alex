@@ -1,9 +1,7 @@
 # Windows 10 -> Vagrant-PhpShtorm-Laravel
 - XDebug + GitHub + PUTTY + Git-bash
-
 ## Настройки Vagrant Homestead
-file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.homestead\Homestead.jaml
-- содержимое:
+file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.homestead\Homestead.jaml:
 ```
  ip: "192.168.10.10" 
  memory: 2048
@@ -12,7 +10,7 @@ file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.hom
  name: alex
  provider: virtualbox
  authorize: ~/.ssh/id_rsa.pub
-  keys: ~/.ssh/id_rsa
+ keys: ~/.ssh/id_rsa
  folders:
      - map: C:/Code
       to: /home/vagrant/Code
@@ -24,9 +22,8 @@ file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.hom
  databases:
     - homestead
 ```
-        
 ## Настройки PhpShtorm 2016.2.2
-Предварительно
+На установленном PhpShtorm для нового project: -> входим в настройки  
 ### Lfktt
 ## Setup
 - считаем что уже установлен PhpShtorm 
