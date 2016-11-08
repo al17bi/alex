@@ -1,7 +1,7 @@
 # Windows 10 -> Vagrant-PhpShtorm-Laravel-install from PhpStorm and configure them
 - XDebug + GitHub + PUTTY + Git-bash
 - На основе:
-http://example.com 
+http://www.pascallandau.com/blog/phpstorm-with-vagrant-using-laravel-homestead-on-windows-10/
 [example site]:http://www.pascallandau.com/blog/phpstorm-with-vagrant-using-laravel-homestead-on-windows-10/
 
 
