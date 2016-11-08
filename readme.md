@@ -3,8 +3,6 @@
 - На основе:
 http://www.pascallandau.com/blog/phpstorm-with-vagrant-using-laravel-homestead-on-windows-10/
 [example site]:http://www.pascallandau.com/blog/phpstorm-with-vagrant-using-laravel-homestead-on-windows-10/
-
-
 ## Настройки Vagrant Homestead
 file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homestead\Homestead.jaml:
 ```
@@ -29,6 +27,7 @@ file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homeste
 ```
 ## Настройки PhpShtorm 2016.2.2
 Для использования php на виртуальной машине vagrant
+
 Считаем что PhpShtorm установлен и создаем новый project, при этом настройки vagrant остались прежние
 
 при создании нового project предполагается использования composer в Shtorm->New project->Composer project->Location = новый каталог для проекта ( под домонтированым 'c:/Code/new')
