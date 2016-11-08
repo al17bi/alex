@@ -3,7 +3,7 @@
 
 ## Настройки Vagrant Homestead
 file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.homestead\Homestead.jaml
-содержимое:
+> содержимое:
 ```
  ip: "192.168.10.10" 
  memory: 2048
