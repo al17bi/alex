@@ -13,6 +13,8 @@ name: alex
 provider: virtualbox
 authorize: ~/.ssh/id_rsa.pub
 keys: ~/.ssh/id_rsa
+...
+
 folders:
     - map: C:/Code
       to: /home/vagrant/Code
