@@ -3,13 +3,13 @@
 
 ## Настройки Vagrant Homestead
 - file Homestead.jml
--- ' ip: "192.168.10.10" 
--- ' memory: 2048 '
--- '  cpus: 1 '
--- ' hostname: alex ' 
--- ' name: alex '
--- ' provider: virtualbox '
---- 'authorize: ~/.ssh/id_rsa.pub'
++ ' ip: "192.168.10.10" 
++ ' memory: 2048 '
++'  cpus: 1 '
++ ' hostname: alex ' 
++ ' name: alex '
++ ' provider: virtualbox '
++ 'authorize: ~/.ssh/id_rsa.pub'
 
 keys:
     - ~/.ssh/id_rsa
