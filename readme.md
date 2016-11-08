@@ -1,5 +1,50 @@
-# LaravelExample
+# Windows 10 -> Vagrant-PhpShtorm-Laravel
+- XDebug + GitHub + PUTTY + Git-bash + Laravel
+## Настройки Vagrant Homestead
+- file Homestead.jml
+ ' ip: "192.168.10.10" 
+ ' memory: 2048 '
+ '  cpus: 1 '
+ ' hostname: alex ' 
+' name: alex '
+' provider: virtualbox '
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: C:/Code
+      to: /home/vagrant/Code
+
+sites:
+    - map: alex.app
+      to: /home/vagrant/Code/alex/public
+    - map: phpmyadmin.app
+      to: "/home/vagrant/phpmyadmin" 
+
+databases:
+    - homestead
+    
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
+
+## Настройки PhpShtorm 2016.2.2
+Предварительно
+### Lfktt
 ## Setup
+- считаем что уже установлен PhpShtorm 
 - download/clone the git repository from
   - `git clone https://github.com/paslandau/laravelexample.git`
 - navigate into the project folder
