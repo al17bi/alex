@@ -2,7 +2,7 @@
 - XDebug + GitHub + PUTTY + Git-bash + Laravel
 
 ## Настройки Vagrant Homestead
-- file Homestead.jml
+file Homestead.jml // Обычно  на Windows 10 -> c:\Users\your-User\.homestead\
 + ' ip: "192.168.10.10" 
 + ' memory: 2048 '
 +'  cpus: 1 '
