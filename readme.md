@@ -1,5 +1,6 @@
 # Windows 10 -> Vagrant-PhpShtorm-Laravel
 - XDebug + GitHub + PUTTY + Git-bash
+
 ## Настройки Vagrant Homestead
 file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.homestead\Homestead.jaml:
 ```
