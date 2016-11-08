@@ -4,7 +4,7 @@
 ## Настройки Vagrant Homestead
 file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.homestead\Homestead.jaml
 содержимое:
-'''
+```
  ip: "192.168.10.10" 
  memory: 2048
  cpus: 1
@@ -23,7 +23,7 @@ file Homestead.jaml -> обычно  на Windows 10 -> c:\Users\your-User\\.hom
        to: "/home/vagrant/phpmyadmin"
  databases:
     - homestead
-'''
+```
         
 ## Настройки PhpShtorm 2016.2.2
 Предварительно
