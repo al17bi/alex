@@ -1,5 +1,6 @@
 # Windows 10 -> Vagrant-PhpShtorm-Laravel
 - XDebug + GitHub + PUTTY + Git-bash + Laravel
+
 ## Настройки Vagrant Homestead
 - file Homestead.jml
  ' ip: "192.168.10.10" 
