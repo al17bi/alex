@@ -26,15 +26,38 @@ file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homeste
     - homestead
 ```
 ## Настройки PhpShtorm 2016.2.2
-Для использования php на виртуальной машине vagrant
+**File->Settings->Build,Execution,Deployment->Deployment**
+- **type:** 'SFTP'
+- **HOST:** 'you vagrant machine'
+- **port:** '22'
+- **Root path:** '/home/vagrant/Code'
+- **User name:** 'vagrant'
+- **Auth type:** 'Key pair(OpenSSH or PuTTY)'
+- **Private key file:** 'C:\Users\User\.ssh\putty_private.ppk' (`сгенерирован PUTTY`)
+  - протестировать нажав `Test SFTP connection ...`
+  
+**File->Settings->Languages&Framework->PHP**
+- **PHP language level:** '7(return types, scalar type hints, etc)'
+- **Interpreter:** 'Remote PHP 7 (7.0.8-2+deb.sury.org~xenial+1)'
+  - при нажатии кнопки `...` появится новое окно настройки Interpreter
+  
+**Настройки Interpreter**
+  - создать новый Interpreter нажав зеленый **`+`**
+- **name:** 'Remote PHP 7'
+- **Deployment configuration** выберите настроеный ранее Deployment
+- **PHP executable:** '/usr/bin/php'
 
-Считаем что PhpShtorm установлен и создаем новый project, при этом настройки vagrant остались прежние
-
-Что это значит?
-
-Либо создаем новые правила настроек PhpShtorm, либо используем ужу настроеные. Под этим подразумевается следующее:
- 
- 
+Для поддержки отладки необходимо добавить в php.ini подключения модуля xdebug.ini следующего содержания:
+```
+zend_extension=xdebug.so
+xdebug.remote_autostart=on
+xdebug.remote_enable=on
+xdebug.remote_handler='dbgp'
+xdebug.remote_host=192.168.1.7
+xdebug.remote_port=9001
+xdebug.remote_mode=req
+xdebug.idekey='PHPSHTORM'
+```
 при создании нового project предполагается использования composer в Shtorm->New project->Composer project->Location = новый каталог для проекта ( под домонтированым 'c:/Code/new')
 example: **С:/Code/alex**
 На установленном PhpShtorm для нового project: -> входим в настройки  
