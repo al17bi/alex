@@ -2,6 +2,7 @@
 - XDebug + GitHub + PUTTY + Git-bash
 - На основе:
 [phpstorm-with-vagrant-using-laravel-homestead-on-windows-10](http://www.pascallandau.com/blog/phpstorm-with-vagrant-using-laravel-homestead-on-windows-10/)
+
 ## Настройки Vagrant Homestead
 file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homestead\Homestead.jaml:
 ```
