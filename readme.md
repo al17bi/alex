@@ -1,10 +1,11 @@
 # Windows 10 -> Vagrant-PhpShtorm-Laravel-install from PhpStorm and configure them
-- XDebug + GitHub + PUTTY + Git-bash
+- XDebug + PHPUnit + GitHub + PUTTY + Git-bash + Vui2 + bootstrap
 - На основе:
 [phpstorm-with-vagrant-using-laravel-homestead-on-windows-10](http://www.pascallandau.com/blog/phpstorm-with-vagrant-using-laravel-homestead-on-windows-10/)
 
 ## Настройки Vagrant Homestead
-file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homestead\Homestead.jaml:
+Содержимое файла Homestead.jaml
+- for **Windows 10** C:\\Users\\**_your-User_**\\.homestead\Homestead.jaml:
 ```
  ip: "192.168.10.10" 
  memory: 2048
@@ -25,16 +26,28 @@ file Homestead.jaml -> for **Windows 10** -> c:\Users\\**_your-User_**\\.homeste
  databases:
     - homestead
 ```
+Добавить в 'C:\\Windows\\System32\\drivers\\etc\\host'
+```
+ 192.168.10.10 alex.app
+ 192.168.10.10 www.alex.app
+```
 ## Настройки PhpShtorm 2016.2.2
 **File->Settings->Build,Execution,Deployment->Deployment**
+
+на вкладке **Connection:**
 - **type:** 'SFTP'
 - **HOST:** 'you vagrant machine'
 - **port:** '22'
 - **Root path:** '/home/vagrant/Code'
 - **User name:** 'vagrant'
 - **Auth type:** 'Key pair(OpenSSH or PuTTY)'
-- **Private key file:** 'C:\Users\User\.ssh\putty_private.ppk' (`сгенерирован PUTTY`)
+- **Private key file:** 'C:\\Users\\**_your-User_**\\.ssh\\putty_private.ppk' (`сгенерирован PUTTY`)
   - протестировать нажав `Test SFTP connection ...`
+  
+на вкладке **Mappings:**
+- **Set local path:** 'C:\\Code\\alex'
+- **Deployment path on server alex.app** '/alex'
+- **Web patch on server** '/'
   
 **File->Settings->Languages&Framework->PHP**
 - **PHP language level:** '7(return types, scalar type hints, etc)'
@@ -58,45 +71,54 @@ xdebug.remote_port=9001
 xdebug.remote_mode=req
 xdebug.idekey='PHPSHTORM'
 ```
-при создании нового project предполагается использования composer в Shtorm->New project->Composer project->Location = новый каталог для проекта ( под домонтированым 'c:/Code/new')
-example: **С:/Code/alex**
-На установленном PhpShtorm для нового project: -> входим в настройки  
-### Lfktt
-## Setup
-- считаем что уже установлен PhpShtorm 
-- download/clone the git repository from
-  - `git clone https://github.com/paslandau/laravelexample.git`
-- navigate into the project folder
-  - `cd laravelexample`
-- make sure not to work directly on the master branch  
-  - `git checkout -b my_local_branch`
-- to prepare the vagrant configuration, run
-  - `vendor/bin/homestead make` or `vendor/bin/homestead.bat make` on Windows
-- adjust the `hosts` file and the newly created `Homestead.yaml` in the root of the repo according to your needs. Usually that includes:
-  - adjust `ip`
-    - make sure the `ip` is not already used in your local network
-  - add an entry to your host file
-    - `[IP] laravelexample.app` (e.g. `192.168.33.111 laravelexample.app`)
-    - location on Unix: `/etc/hosts`
-    - location on Windows: `C:\Windows\System32\drivers\etc`
-- adjust `folders` and `sites` mapping (optional; it should be set up correctly by default if you followed the steps above).
-  Watch out for the following:
-  - the `folders: - map: "[PATH]"` should point to the absolute path to the `cube` repository on your **local** machine
-  - the `folders: to: "[PATH]"` denotes the path on your **vagrant** machine that is mapped to the above mentioned path on your local machine,
-    so that you can access your local files within the vagrant box.
-  - the `sites: - map: "[HOSTNAME]"` denotes the hostname that the nginx is looking for to serve content on
-    - you _should_ adjust that to the hostname chosen for your hostfile (e.g. `laravelexample.app`) although it not necessary since nginx will even respond to another hostname
-  - the `sites: - to: "[PATH]"` denotes the absolute path withing the vagrant box that the above mentioned hostname uses as `root` path for content.
-    This should be the path to the `public` folder of this repository
-- start the vagrant box with `vagrant up`, ssh into it with `vagrant ssh`, switch to the project folder (by default, this should be `cd /home/vagrant/laravelexample/`) and install the 
-  project's dependencies
-  - `composer install`
-- setup laravel by generating an application key and setting up the .env file:
-  - php artisan key:generate
-  - `cp .env.example .env`
-- generate the meta data files for better code completion
+## Setup Laravel
+**New project->Composer project**
+- **Location:** 'C:\\Code\\alex')
+- **Download composer.phar from getcomposer.org**
+- **Package** -> 'laravel/laravel'
+
+- В файл config/app.php добавить в секцию providers
+  - `Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,`
+
+В консоли через PUTTY->SSH(user vagrant)
+- Выполнить:
+  - `cd /home/vagrant/Code/alex`
+  - `composer require barryvdh/laravel-ide-helper`
+  - `composer require doctrine/dba1`
+  - `composer update`
+  - `artisan make:migration`
+  - `artisan make:Auth`
   - `php artisan ide-helper:meta`
   - `php artisan ide-helper:generate`
   - `php artisan ide-helper:model`
 
-You should now be able to open http://laravelexample.app/ in your browser and see the Laravel welcome page :)
+Теперь можно открыть http://alex.app/ в браузере на первой странице Laravel
+
+выполнить регистрацию, залогиниться и попасть на персональную страницу пользователя
+
+Для включения системы контроля версий необходимо проделать следующее:
+
+**File->Settings>Version Control->GitHub**
+- **Host** 'github.com'
+- **Auth type** 'Token'
+- **Token:** 'from github'
+- проверка проводиться нажатеем кнопки `test`
+**File->Settings>Version Control->Git**
+- **Patch for Git executable** 'C:\\Program Files\\Git\\cmd\\git.exe'
+- **SSH executable** 'native'
+- проверка проводиться нажатеем кнопки `test`
+
+Для полноценного использования необходимо сгенерировать пару ключей для обмена с GitHub
+
+запустив git-bash на Windows 10 выплним команду:
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+Пара ключей будет расположена в 'C:\\Users\\User\\.ssh' -> ***ide_rsa.pub***, ***ide_rsa***
+Содержимое ***ide_rsa.pub*** вставить на GitHub при регистрации нового SSH ключа
+
+После этого при инициализации VCS контроля через меню PHPStorm создаться новый репозитарий в GitHub,
+который можно полноценно использовать для разработки проекта.
+
+ 
+ 
