@@ -120,5 +120,15 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 После этого при инициализации VCS контроля через меню PHPStorm создаться новый репозитарий в GitHub,
 который можно полноценно использовать для разработки проекта.
 
+**Compiling Assets (Laravel Elixir)**
+```
+node -v
+npm -v
+sudo npm install --global gulp-cli
+npm install
+gulp
+```
+Можно пользоваться Laravel(elixir) для файлов стилей и скриптов.
+
  
  
