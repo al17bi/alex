@@ -6,13 +6,19 @@
     <div class="container-fluid spark-screen">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div id="lobipanel-1" class="panel panel-warning">
+                <div>
+                    <div class="bs-example">
+                        <h4>Basic example</h4>
+                        <div id="todo"></div>
+                    </div>
+                </div>
+                <div id="panel-1" class="panel panel-warning">
                     <div class="panel-heading">Home</div>
                     <div class="panel-body">
                         {{ trans('adminlte_lang::message.logged') }}
                     </div>
                 </div>
-                <div id="lobipanel-2" class="panel panel-info">
+                <div id="panel-2" class="panel panel-info">
                     <div class="panel-heading">
                         <div class="panel-title">
                             Dashboard

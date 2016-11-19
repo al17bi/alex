@@ -7,9 +7,7 @@
     <link href="{{ elixir('/css/all.css') }}" rel="stylesheet" type="text/css" />
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css">
-    <link rel="stylesheet" href="/css/lobilist.css">
-    <link rel="stylesheet" href="/css/lobibox.css">
-    <link rel="stylesheet" href="/css/lobipanel.css">
+    <link rel="stylesheet" href="/css/lobi.css">
      <script>
         window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),

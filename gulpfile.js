@@ -25,8 +25,9 @@ elixir(function(mix) {
             './public/css/adminlte-less.css',
             './public/css/adminlte-app.css',
             './node_modules/icheck/skins/square/blue.css',
-            './public/css/toastr.css',
+            './public/css/toastr.css'
         ])
+        .styles(['lobi/lobibox.css','lobi/lobilist.css','lobi/lobipanel.css'],'public/css/lobi.css')
         .copy('node_modules/font-awesome/fonts/*.*','public/fonts/')
         .copy('node_modules/ionicons/dist/fonts/*.*','public/fonts/')
         .copy('node_modules/admin-lte/bootstrap/fonts/*.*','public/fonts/bootstrap')
@@ -35,5 +36,8 @@ elixir(function(mix) {
         .copy('node_modules/admin-lte/plugins','public/plugins')
         .copy('node_modules/icheck/skins/square/blue.png','public/css')
         .copy('node_modules/icheck/skins/square/blue@2x.png','public/css')
+        .copy('resources/assets/sounds/*.*','public/sounds')
+        .scripts(['lobi/lobibox.js','lobi/lobilist.js','lobi/lobipanel.js'],'public/js/lobi.js')
+        .scripts('lobi/lobi_custom.js','public/js/lobi_custom.js')
         .webpack('app.js');
 });

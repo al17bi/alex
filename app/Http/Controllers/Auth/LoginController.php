@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
-
+use Entrust;
 class LoginController extends Controller
 {
     /*
@@ -41,13 +41,19 @@ class LoginController extends Controller
     public function authenticated($request, $user)
     {
         // do your checks here and redirect as you like
-
+        if(Entrust::hasRole('admin')){
+            return redirect('/admin');
+        } else {
+            return redirect('/home');
+        }
+/*
         if(Auth::user()->isAdmin()) {
             return redirect('/admin');
         } else {
             return redirect('/home');
         }
 //        return redirect()->intended($this->redirectPath());
+*/
     }
 
 
