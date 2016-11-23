@@ -6,6 +6,30 @@ use App\User;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::auth();
+
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::get('/home', 'HomeController@index');
+
+    Route::resource('users','UserController');
+
+    Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+    Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
+    Route::post('roles/create',['as'=>'roles.store','uses'=>'RoleController@store','middleware' => ['permission:role-create']]);
+    Route::get('roles/{id}',['as'=>'roles.show','uses'=>'RoleController@show']);
+    Route::get('roles/{id}/edit',['as'=>'roles.edit','uses'=>'RoleController@edit','middleware' => ['permission:role-edit']]);
+    Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update','middleware' => ['permission:role-edit']]);
+    Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy','middleware' => ['permission:role-delete']]);
+
+    Route::get('itemCRUD2',['as'=>'itemCRUD2.index','uses'=>'ItemCRUD2Controller@index','middleware' => ['permission:item-list|item-create|item-edit|item-delete']]);
+    Route::get('itemCRUD2/create',['as'=>'itemCRUD2.create','uses'=>'ItemCRUD2Controller@create','middleware' => ['permission:item-create']]);
+    Route::post('itemCRUD2/create',['as'=>'itemCRUD2.store','uses'=>'ItemCRUD2Controller@store','middleware' => ['permission:item-create']]);
+    Route::get('itemCRUD2/{id}',['as'=>'itemCRUD2.show','uses'=>'ItemCRUD2Controller@show']);
+    Route::get('itemCRUD2/{id}/edit',['as'=>'itemCRUD2.edit','uses'=>'ItemCRUD2Controller@edit','middleware' => ['permission:item-edit']]);
+    Route::patch('itemCRUD2/{id}',['as'=>'itemCRUD2.update','uses'=>'ItemCRUD2Controller@update','middleware' => ['permission:item-edit']]);
+    Route::delete('itemCRUD2/{id}',['as'=>'itemCRUD2.destroy','uses'=>'ItemCRUD2Controller@destroy','middleware' => ['permission:item-delete']]);
+});
 // Route для страниц администратора
 Route::group(['prefix' => 'admin','middleware' => ['role:admin']], function() {
     Route::get('/', 'Admin\AdminController@index');
@@ -15,50 +39,10 @@ Route::group(['prefix' => 'admin','middleware' => ['role:admin']], function() {
     Route::get('/manage', ['middleware' => ['permission:create-post'], 'uses' => 'Admin\AdminController@manageAdmins']);
 });
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
 /*  для остальных авторизованных пользователей
 /   route кроме /home - который обрабатывается в AdminLTE пакете
 */
     Route::get('/settings', function(){
         return "эта страница для авторизованных пользователей URI = /settings";
     });
-});
-
-
-Route::get('/tttttttttttttest', function () {
-    $admin = new Role();
-    $admin->name         = 'admin';
-    $admin->display_name = 'User Administrator'; // optional
-    $admin->description  = 'User is allowed to manage and edit other users'; // optional
-    $admin->save();
-
-    $owner = new Role();
-    $owner->name         = 'owner';
-    $owner->display_name = 'Project Owner'; // optional
-    $owner->description  = 'User is the owner of a given project'; // optional
-    $owner->save();
-
-    $user = User::where('name', '=', 'Alex Birukov')->first();;
-    // role attach alias
-    $user->attachRole($admin); // parameter can be an Role object, array, or id
-    $createPost = new Permission();
-    $createPost->name         = 'create-post';
-    $createPost->display_name = 'Create Posts'; // optional
-// Allow a user to...
-    $createPost->description  = 'create new blog posts'; // optional
-    $createPost->save();
-
-    $editUser = new Permission();
-    $editUser->name         = 'edit-user';
-    $editUser->display_name = 'Edit Users'; // optional
-// Allow a user to...
-    $editUser->description  = 'edit existing users'; // optional
-    $editUser->save();
-
-    $admin->attachPermission($createPost);
-// equivalent to $admin->perms()->sync(array($createPost->id));
-
-    $owner->attachPermissions(array($createPost, $editUser));
-
-    return 'Ok назначены роли !!!';
 });

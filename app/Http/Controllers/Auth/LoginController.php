@@ -46,17 +46,7 @@ class LoginController extends Controller
         } else {
             return redirect('/home');
         }
-/*
-        if(Auth::user()->isAdmin()) {
-            return redirect('/admin');
-        } else {
-            return redirect('/home');
-        }
-//        return redirect()->intended($this->redirectPath());
-*/
     }
-
-
     /**
      * Create a new controller instance.
      *
